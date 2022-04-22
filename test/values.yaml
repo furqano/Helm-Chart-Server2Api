@@ -19,4 +19,5 @@ DBconnect:
   IP: ""
   User: ""
   Pass: ""
-  db: server2api
+  db: ""
+  Port: "27017"
