@@ -29,9 +29,11 @@ spec:
           value: {{ .Values.DBconnect.Pass}}
         - name: MONGO_DB
           value: {{ .Values.DBconnect.db}}
+        - name: MONGO_PORT
+          value: {{ .Values.DBconnect.Port}}
         - name: MONGO_IP
           value: {{ .Values.DBconnect.IP}}
         - name: SPRING_DATA_MONGODB_URI
-          value: mongodb://$(MONGO_USER):$(MONGO_PASS)@$(MONGO_IP):27017/$(MONGO_DB)
+          value: mongodb://$(MONGO_USER):$(MONGO_PASS)@$(MONGO_IP):$(MONGO_PORT)/$(MONGO_DB)
         ports:
         - containerPort: {{ .Values.restapi.containerport}}
