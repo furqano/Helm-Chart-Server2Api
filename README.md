@@ -115,4 +115,10 @@ spec:
 
 ![image](https://user-images.githubusercontent.com/64476159/164579918-46e932ce-7cef-4c02-9767-6757a9570e03.png)
 
+## Connect to Application Using Port-Forward 
+
+```
+kubectl port-forward svc/rest-api-app-service 6035:6035
+```
+![port-fw ](https://user-images.githubusercontent.com/64476159/163685377-cec6506b-62cb-4be0-8477-5ce68885d42c.png)
 
