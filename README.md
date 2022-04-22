@@ -11,6 +11,10 @@
 
 ## To Run the chart 
 ```
+helm install my-test test --set DBconnect.IP=mongodb-ip,DBconnect.User=my-user,DBconnect.Pass=my-pass,DBconnect.db=db-name
+
+example:
+
 helm install my-test test --set DBconnect.IP=dep-mongodb.default.svc.cluster.local,DBconnect.User=fate,DBconnect.Pass=pass,DBconnect.db=server2api
 
 ```
