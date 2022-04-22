@@ -4,19 +4,26 @@
 
 * For Database Mongodb using community edition to create seprate chart.
 
+## As Recommended to create parameterized inputs for URL in mongodb 
+* Added User, Pass, IP and DB values as parameters while launching the chart. Default value used is monogd://$(MONGO_USER):$(MONGO_PASS)@$(MONGO_IP):27017/$(MONGO_DB)
+
+## To Run the chart 
+```
+helm install my-test test --set DBconnect.IP=dep-mongodb.default.svc.cluster.local,DBconnect.User=fate,DBconnect.Pass=pass,DBconnect.db=server2api
+
+```
 ## Values.yaml
 
 ```
-
 replicaCount: 1
 
 restapi:
   name: restapi-app
-  image: furqano/restapi-app:latest
-  SPRING_DATA_MONGODB_URI: mongodb://my-user:my-password@dep-mongodb.dep.svc.cluster.local:27017/server2api
+  image: furqano/test:latest
+  SPRING_DATA_MONGODB_URI: ""
   MONGODB_HOST: mongodb
   containerport: 6035
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 restapiservice:
   name: rest-api-app-service
@@ -28,13 +35,12 @@ DBconnect:
   IP: ""
   User: ""
   Pass: ""
-  db: server2api
+  db: ""
 
-  
 ```
-#### Using DNS name for Mongodb as default value to connect the application. Also parameterized the 'SPRING_DATA_MONGODB_URI' to provide custom URL.
+###### Using DNS name for Mongodb as default value to connect the application. Also parameterized the 'SPRING_DATA_MONGODB_URI' to provide custom URL.
 ```
---set SPRING_DATA_MONGODB_URI='url for mongodb'
+--set SPRING_DATA_MONGODB_URI=mongodb://my-user:my-pass@dep-mongodb.default.svc.cluster.local:27017/my-db-name
 ```
 
 ## Chart.yaml - To add dependencies in current chart
@@ -70,12 +76,16 @@ spec:
         env:
         - name: MONGODB_HOST
           value: {{ .Values.restapi.MONGODB_HOST}}
-        - name: SPRING_DATA_MONGODB_URI
-          value: {{ .Values.restapi.SPRING_DATA_MONGODB_URI}}
         - name: MONGO_USER
           value: {{ .Values.DBconnect.User}}
         - name: MONGO_PASS
           value: {{ .Values.DBconnect.Pass}}
+        - name: MONGO_DB
+          value: {{ .Values.DBconnect.db}}
+        - name: MONGO_IP
+          value: {{ .Values.DBconnect.IP}}
+        - name: SPRING_DATA_MONGODB_URI
+          value: mongodb://$(MONGO_USER):$(MONGO_PASS)@$(MONGO_IP):27017/$(MONGO_DB)
         ports:
         - containerPort: {{ .Values.restapi.containerport}}
 ```
@@ -98,8 +108,11 @@ spec:
 ```
 ## Screenshots
 
-![image](https://user-images.githubusercontent.com/64476159/164576906-7bce0a55-08c6-4985-9002-6d5bb892f599.png)
-![image](https://user-images.githubusercontent.com/64476159/164576951-5dd17822-f490-415c-a3ed-a9499f8cfab6.png)
+![image](https://user-images.githubusercontent.com/64476159/164786387-d9c8316c-0439-457f-8e2f-8efe7aa983c6.png)
+![image](https://user-images.githubusercontent.com/64476159/164786279-620fe136-2598-4fd4-ad96-7e61ce0afb18.png)
+
+
+
 ![image](https://user-images.githubusercontent.com/64476159/164579918-46e932ce-7cef-4c02-9767-6757a9570e03.png)
 
 
