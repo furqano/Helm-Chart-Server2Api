@@ -1,0 +1,22 @@
+
+replicaCount: 1
+
+restapi:
+  name: restapi-app
+  image: furqano/test:latest
+  SPRING_DATA_MONGODB_URI: ""
+  MONGODB_HOST: mongodb
+  containerport: 6035
+  pullPolicy: Always
+
+restapiservice:
+  name: rest-api-app-service
+  type: NodePort
+  port: 6035
+  protocol: TCP
+
+DBconnect:
+  IP: ""
+  User: ""
+  Pass: ""
+  db: server2api
