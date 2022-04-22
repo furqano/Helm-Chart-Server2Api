@@ -25,15 +25,17 @@ restapiservice:
   protocol: TCP
 
 DBconnect:
-  UR: mongodb://
-  IP: lib-mongodb.test.svc.cluster.local
-  User: my-user
-  Pass: my-password
+  IP: ""
+  User: ""
+  Pass: ""
   db: server2api
 
   
 ```
 #### Using DNS name for Mongodb as default value to connect the application. Also parameterized the 'SPRING_DATA_MONGODB_URI' to provide custom URL.
+```
+--set SPRING_DATA_MONGODB_URI='url for mongodb'
+```
 
 ## Chart.yaml - To add dependencies in current chart
 ```
