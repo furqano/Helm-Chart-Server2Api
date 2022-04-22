@@ -20,4 +20,4 @@ DBconnect:
   User: ""
   Pass: ""
   db: ""
-  Port: "27017"
+  Port: 27017
