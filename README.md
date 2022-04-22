@@ -70,6 +70,8 @@ spec:
     metadata:
       labels:
         {{- include "test.selectorLabels" . | nindent 8}}
+      annotations:
+        rollme: {{ randAlphaNum 5 | quote }}
     spec:
       containers:
       - name: {{ .Values.restapi.name}}
