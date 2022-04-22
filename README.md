@@ -6,7 +6,8 @@
 
 ## As Recommended to create parameterized inputs for URL in mongodb 
 * Added User, Pass, IP and DB values as parameters while launching the chart. 
-* Default value used is mongodb://localhost:27017/db. With parameters monogd://$(MONGO_USER):$(MONGO_PASS)@$(MONGO_IP):27017/$(MONGO_DB)
+* Default value used is mongodb://localhost:27017/db. 
+* With parameters monogd://$(MONGO_USER):$(MONGO_PASS)@$(MONGO_IP):27017/$(MONGO_DB)
 
 ## To Run the chart 
 ```
